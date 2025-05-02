@@ -3,6 +3,8 @@ package com.task.machinetask.service;
 import java.util.List;
 
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Producer;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.task.machinetask.entity.ApiResponse;
 import com.task.machinetask.entity.Product;
@@ -13,6 +15,7 @@ public interface ProductService {
 	public List<Product> findAllProduct();
 	public ApiResponse deletedProductById(Long id);
 	public  Product findProdctById(Long id);
+	public Page<Product> findAllProduct(Pageable pageable);
 
 
 }

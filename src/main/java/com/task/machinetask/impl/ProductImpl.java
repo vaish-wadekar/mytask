@@ -3,6 +3,8 @@ package com.task.machinetask.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.task.machinetask.entity.ApiResponse;
@@ -76,6 +78,11 @@ ApiResponse apiResponse =new ApiResponse();
 		// TODO Auto-generated method stub
 		return this.productRespository.findById(id).orElseThrow(()-> new IllegalArgumentException("product not found with given"+id));  
 
+	}
+
+	@Override
+	public Page<Product> findAllProduct(Pageable pageable) {
+	    return this.productRespository.findAll(pageable);
 	}
 
 }

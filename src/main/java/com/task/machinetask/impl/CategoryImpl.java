@@ -3,10 +3,13 @@ package com.task.machinetask.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.task.machinetask.entity.ApiResponse;
 import com.task.machinetask.entity.Category;
+import com.task.machinetask.entity.Product;
 import com.task.machinetask.repository.CategoryRepository;
 import com.task.machinetask.service.CategoryService;
 
@@ -66,6 +69,13 @@ public class CategoryImpl implements CategoryService {
 	public List<Category> findAllCategory() {
 
 		return this.categoryRepository.findAll();
+	}
+
+	@Override
+	public Page<Category> findAllProduct(Pageable pageable) {
+		  
+	  
+		return this.categoryRepository.findAll(pageable);
 	}
 
 }

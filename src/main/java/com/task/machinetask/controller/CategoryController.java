@@ -3,6 +3,9 @@ package com.task.machinetask.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,10 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.task.machinetask.entity.ApiResponse;
 import com.task.machinetask.entity.Category;
+import com.task.machinetask.entity.Product;
 import com.task.machinetask.service.CategoryService;
 
 @RestController
@@ -58,6 +63,15 @@ public class CategoryController {
 
 		return new ResponseEntity<Category>(this.categoryService.findCategoryById(id), HttpStatus.CREATED);
 
+	}
+	
+	@GetMapping("/page")
+	public ResponseEntity<Page<Category>> findAllProduct(
+	        @RequestParam(defaultValue = "0") int page,
+	        @RequestParam(defaultValue = "10") int size) {
+	    Pageable pageable = PageRequest.of(page, size);
+	    Page<Category> pagedProducts = categoryService.findAllProduct(pageable);
+	    return new ResponseEntity<>(pagedProducts, HttpStatus.OK);
 	}
 
 }

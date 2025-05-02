@@ -21,7 +21,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private long price;
+   private long price;
     private String imgUrl;
     private long discount;
     private boolean status;
@@ -29,6 +29,5 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    @JsonIgnore
     private Category category;
 }
